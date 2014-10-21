@@ -1,0 +1,10 @@
+ENVIRONMENT:
+	python 2.7.3
+	django 1.6.2
+	bootstrap 3.1.1
+
+INSTRUCTIONS:
+	Unzip the archive, edit the database info in  emmaBlog/settings.py to match your local db.
+	Create a database whose name corresponds to the name in settings.py. From the outer "blog/" dir
+	run "python manage.py runserver" . Go to the browser and type localhost:8000 into the address
+	bar to preview it. If you want to, you could also configure apache or nginx.

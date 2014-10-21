@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jeremy Estrada Blog Engine</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap-theme.min.css' %}" />
+	</head>
+	<body>
+		{% block header %}
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header" id="header">
+				<a class="navbar-brand" href="/"><span class="text-primary">Blog Engine (Blengine?)</span></a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="{% url 'blog:index' %}">Home &nbsp <span class='glyphicon glyphicon-home'></span></a></li>
+					<li><a href="{% url 'blog:allEntries' %}">All Entries</a></li>
+					<li><a href="{% url 'blog:compose' %}">Compose</a></li>
+				</ul>
+				{% if user.is_authenticated %}
+				<div class="navbar-right">
+					<p>Welcome,<span class="text-primary"> {{user.username}}</span></p>
+					<a href="{% url 'blog:logout' %}">Logout</a>
+				</div>
+				{% else %}
+				<form class="navbar-form navbar-right" action="{% url 'blog:login' %}" method="post">
+				{% csrf_token %}
+					<input type="text" name="username" placeholder="username" class="form-control" />
+					<input type="password" name="password" placeholder="password" class="form-control" />
+					<input type="submit" value="Login" class="btn btn-default" />
+				</form>
+				<a class="navbar-right" href="{% url 'blog:register' %}">Register</a>
+				{% endif %}
+			</div>
+		</nav>
+		{% endblock %}
+		<!--div class="breadcrumb"></div-->
+		<div class="container" id="content">
+		{% block content %}{% endblock %}
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+	</body>
+</html>

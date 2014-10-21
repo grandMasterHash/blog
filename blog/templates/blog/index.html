@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if posts %}
+	{% for post in posts %}
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4><a href="{% url 'blog:detail'  post.id %}">{{ post.title }}</a></h4>
+				</div>
+				<div class="panel-body">
+					<p>by <b>{{ post.author.username }}</b></p>
+					<p>{{ post.date.date }}</p>
+					<p>{{ post.content }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+{% else %}
+	<h3>Sorry. There are currently no blog posts.</h3>
+{% endif %}
+{% endblock %}

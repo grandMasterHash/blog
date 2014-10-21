@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="text-primary">Add Blog Entry</h4>
+			</div>
+			<div class="panel-body">
+				<form action="{% url 'blog:create' %}" method="post">
+				{% csrf_token %}
+					Title: <input class="form-control" type="text" name="title" size="30"><br>
+					Content: <textarea class="form-control" name="content" cols="80" rows="10"></textarea><br>
+					<button class="btn btn-default" type="submit">Post</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
